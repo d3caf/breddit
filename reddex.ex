@@ -23,14 +23,16 @@ defmodule Reddex do
 
   # TODO: extract to mix config
   defp config do
-    Config.Reader.merge(@default_config, Application.get_env(:reddex, :oauth))
+    @default_config
+    |> Config.Reader.merge(Application.get_env(:reddex, :oauth))
     |> Keyword.update!(:params, &Map.merge(&1, Application.get_env(:reddex, :params)))
     #FIXME
     # |> Keyword.update!(:headers, &([Application.get_env(:reddex, :headers) | &1]))
   end
 
   defp url(uri, params, opts \\ []) do
-    Keyword.get(opts, :site, @root_url)
+    opts
+    |> Keyword.get(:site, @root_url)
     |> URI.parse()
     |> URI.merge(uri)
     |> Map.put(:query, URI.encode_query(params))
@@ -39,9 +41,9 @@ defmodule Reddex do
 
   # Public API
   def client(args \\ []) do
-    config = Keyword.merge(config(), args)
-
-    OAuth2.Client.new(config)
+    config()
+    |> Keyword.merge(args)
+    |> OAuth2.Client.new()
     |> OAuth2.Client.put_serializer("application/json", Jason)
   end
 
@@ -50,7 +52,8 @@ defmodule Reddex do
 
     Logger.info("Getting: #{url}")
 
-    OAuth2.Client.get(client, url, headers, opts)
+    client
+    |> OAuth2.Client.get(url, headers, opts)
     |> parse_response()
   end
 
