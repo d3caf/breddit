@@ -25,7 +25,8 @@ defmodule Reddex do
   defp config do
     Config.Reader.merge(@default_config, Application.get_env(:reddex, :oauth))
     |> Keyword.update!(:params, &Map.merge(&1, Application.get_env(:reddex, :params)))
-    |> Keyword.update!(:headers, &([Application.get_env(:reddex, :headers) | &1]))
+    #FIXME
+    # |> Keyword.update!(:headers, &([Application.get_env(:reddex, :headers) | &1]))
   end
 
   defp url(uri, params, opts \\ []) do
