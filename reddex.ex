@@ -14,7 +14,7 @@ defmodule Reddex do
     token_url: "https://www.reddit.com/api/v1/access_token",
     params: %{duration: "permanent"},
     headers: [
-      {"User-Agent", "web:reddex:v.0.0.1"},
+      {"User-Agent", "web:reddex:v.0.0.1 (by u/andrex092)"},
       {"Content-Type", "application/x-www-form-urlencoded"}
     ]
   ]
@@ -53,6 +53,7 @@ defmodule Reddex do
     Logger.info("Getting: #{url}")
 
     client
+    |> OAuth2.Client.put_serializer("application/json", Reddex.Serializer)
     |> OAuth2.Client.get(url, headers, opts)
     |> parse_response()
   end
