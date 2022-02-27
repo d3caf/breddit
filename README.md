@@ -30,5 +30,8 @@ config :reddit,
   params: %{state: "1", scope: "identity edit flair history mysubreddits privatemessages read report save submit"} # optional, but you'll most likely at least want to add `scope` since it'd be useless to be authenticated with no scope.
 ```
 
+## Usage
+More docs to come... I will be adding moduledocs, specs, etc ASAP!
+
 ## Contributing
 Feel free to open PRs to add additional modules! As mentioned previously, I'm using this in a separate app and am adding resources as I need them. If there's a resource you need that's not added, please add it :)
