@@ -68,14 +68,14 @@ defmodule Breddit do
   def authorize_url!(params \\ []) do
     OAuth2.Client.authorize_url!(
       client(),
-      Keyword.merge(params, client_secret: client().client_secret)
+      Keyword.merge(params, client_secret: Keyword.get(config(), :client_secret))
     )
   end
 
   def get_token!(params \\ [], _headers \\ []) do
     OAuth2.Client.get_token!(
       client(),
-      Keyword.merge(params, client_secret: client().client_secret)
+      Keyword.merge(params, client_secret: Keyword.get(config(), :client_secret))
     )
   end
 
