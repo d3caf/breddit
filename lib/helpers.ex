@@ -1,4 +1,4 @@
-defmodule Reddex.Helpers do
+defmodule Breddit.Helpers do
   def format_upvotes(upvotes) when is_number(upvotes) and upvotes > 1_000,
     do:
       upvotes

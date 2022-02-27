@@ -1,4 +1,4 @@
-defmodule Reddex.PreviewImage do
+defmodule Breddit.PreviewImage do
   @keys ~W(id resolutions source variants enabled)a
   @enforce_keys @keys
 

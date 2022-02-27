@@ -1,4 +1,4 @@
-defmodule Reddex.Submission do
+defmodule Breddit.Submission do
   @keys ~W(approved_at_utc category clicked gildings id is_original_content
   is_self media_embed name num_comments over_18 permalink post_hint
   preview score subreddit subreddit_id thumbnail thumbnail_height
@@ -7,7 +7,7 @@ defmodule Reddex.Submission do
 
   @type image :: %{height: integer(), width: integer(), url: String.t()}
 
-  @type t() :: %Reddex.Submission{
+  @type t() :: %Breddit.Submission{
           approved_at_utc: float(),
           category: any(),
           clicked: boolean(),

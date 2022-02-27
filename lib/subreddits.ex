@@ -1,9 +1,9 @@
-defmodule Reddex.Subreddits do
-  use Reddex.Resource
+defmodule Breddit.Subreddits do
+  use Breddit.Resource
 
-  @spec search(OAuth2.Client.t()) :: Reddex.response()
+  @spec search(OAuth2.Client.t()) :: Breddit.response()
   def search(client) do
-    Reddex.get(client, "/subreddits/search?q=trees")
+    Breddit.get(client, "/subreddits/search?q=trees")
   end
 
   def autocomplete(client, query, opts \\ []) do
@@ -12,6 +12,6 @@ defmodule Reddex.Subreddits do
       |> Keyword.put(:query, query)
       |> Enum.into(%{})
 
-    Reddex.get(client, "api/subreddit_autocomplete_v2", params: params)
+    Breddit.get(client, "api/subreddit_autocomplete_v2", params: params)
   end
 end

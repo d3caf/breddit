@@ -1,4 +1,4 @@
-defmodule Reddex.Serializer do
+defmodule Breddit.Serializer do
   @behaviour OAuth2.Serializer
 
   @impl true

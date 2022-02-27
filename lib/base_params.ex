@@ -1,2 +1,2 @@
-defmodule Reddex.BaseParams do
+defmodule Breddit.BaseParams do
 end

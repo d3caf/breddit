@@ -1,8 +1,8 @@
 defmodule ReddexTest do
   use ExUnit.Case
-  doctest Reddex
+  doctest Breddit
 
   test "greets the world" do
-    assert Reddex.hello() == :world
+    assert Breddit.hello() == :world
   end
 end

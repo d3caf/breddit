@@ -1,4 +1,4 @@
-defmodule Reddex.Thing do
+defmodule Breddit.Thing do
   @keys ~W(id name kind data)a
   @enforce_keys @keys
   defstruct @keys

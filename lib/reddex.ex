@@ -1,4 +1,4 @@
-defmodule Reddex do
+defmodule Breddit do
   require Logger
   use OAuth2.Strategy
   alias OAuth2.Strategy.AuthCode
@@ -8,13 +8,13 @@ defmodule Reddex do
   @root_url @site
 
   @default_config [
-    strategy: Reddex,
+    strategy: Breddit,
     site: "https://oauth.reddit.com/",
     authorize_url: "https://www.reddit.com/api/v1/authorize",
     token_url: "https://www.reddit.com/api/v1/access_token",
     params: %{duration: "permanent"},
     headers: [
-      {"User-Agent", "web:reddex:v.0.0.1 (by u/andrex092)"},
+      {"User-Agent", "web:breddit:v.0.0.1 (by u/andrex092)"},
       {"Content-Type", "application/x-www-form-urlencoded"}
     ]
   ]
@@ -24,10 +24,10 @@ defmodule Reddex do
   # TODO: extract to mix config
   defp config do
     @default_config
-    |> Config.Reader.merge(Application.get_env(:reddex, :oauth))
-    |> Keyword.update!(:params, &Map.merge(&1, Application.get_env(:reddex, :params)))
+    |> Config.Reader.merge(Application.get_env(:breddit, :oauth))
+    |> Keyword.update!(:params, &Map.merge(&1, Application.get_env(:breddit, :params)))
     #FIXME
-    # |> Keyword.update!(:headers, &([Application.get_env(:reddex, :headers) | &1]))
+    # |> Keyword.update!(:headers, &([Application.get_env(:breddit, :headers) | &1]))
   end
 
   defp url(uri, params, opts \\ []) do
@@ -53,7 +53,7 @@ defmodule Reddex do
     Logger.info("Getting: #{url}")
 
     client
-    |> OAuth2.Client.put_serializer("application/json", Reddex.Serializer)
+    |> OAuth2.Client.put_serializer("application/json", Breddit.Serializer)
     |> OAuth2.Client.get(url, headers, opts)
     |> parse_response()
   end
